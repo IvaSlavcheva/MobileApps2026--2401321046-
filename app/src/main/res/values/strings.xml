@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MyTasks</string>
+    <string name="filter_all">Всички</string>
+    <string name="filter_active">Активни</string>
+    <string name="filter_done">Изпълнени</string>
+    <string name="empty_list">Няма задачи</string>
+    <string name="add_task">Добави задача</string>
+    <string name="delete_task">Изтрий задачата</string>
 </resources>
