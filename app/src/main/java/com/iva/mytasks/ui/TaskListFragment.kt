@@ -1,5 +1,7 @@
 package com.iva.mytasks.ui
 
+import android.content.Intent
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import android.os.Bundle
@@ -66,6 +68,24 @@ class TaskListFragment : Fragment() {
 
         binding.fabAdd.setOnClickListener {
             findNavController().navigate(R.id.addEditTaskFragment)
+        }
+        binding.buttonShare.setOnClickListener {
+            val tasks = viewModel.tasks.value.orEmpty()
+            if (tasks.isEmpty()) {
+                Toast.makeText(
+                    requireContext(),
+                    R.string.nothing_to_share,
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
+
+            val text = ShareFormatter.format(tasks, getString(R.string.share_header))
+            val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, text)
+            }
+            startActivity(Intent.createChooser(sendIntent, getString(R.string.share_list)))
         }
     }
 

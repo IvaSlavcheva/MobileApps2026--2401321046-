@@ -10,4 +10,7 @@
     <string name="task_title_hint">Какво трябва да направиш?</string>
     <string name="save">Запази</string>
     <string name="title_required">Напиши име на задачата</string>
+    <string name="share_list">Сподели списъка</string>
+    <string name="share_header">Моите задачи:</string>
+    <string name="nothing_to_share">Няма задачи за споделяне</string>
 </resources>
