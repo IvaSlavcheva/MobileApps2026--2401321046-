@@ -6,4 +6,8 @@
     <string name="empty_list">Няма задачи</string>
     <string name="add_task">Добави задача</string>
     <string name="delete_task">Изтрий задачата</string>
+    <string name="new_task">Нова задача</string>
+    <string name="task_title_hint">Какво трябва да направиш?</string>
+    <string name="save">Запази</string>
+    <string name="title_required">Напиши име на задачата</string>
 </resources>

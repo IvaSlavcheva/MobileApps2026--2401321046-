@@ -10,5 +10,10 @@
         android:name="com.iva.mytasks.ui.TaskListFragment"
         android:label="Задачи"
         tools:layout="@layout/fragment_task_list" />
+    <fragment
+        android:id="@+id/addEditTaskFragment"
+        android:name="com.iva.mytasks.ui.AddEditTaskFragment"
+        android:label="Задача"
+        tools:layout="@layout/fragment_add_edit_task" />
 
 </navigation>

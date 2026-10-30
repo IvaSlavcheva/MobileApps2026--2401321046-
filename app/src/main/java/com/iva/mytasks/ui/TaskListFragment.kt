@@ -1,5 +1,7 @@
 package com.iva.mytasks.ui
 
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +39,12 @@ class TaskListFragment : Fragment() {
         val adapter = TaskAdapter(
             onToggle = { task -> viewModel.toggleDone(task) },
             onDelete = { task -> viewModel.deleteTask(task) },
-            onClick = { }
+            onClick = { task ->
+                findNavController().navigate(
+                    R.id.addEditTaskFragment,
+                    bundleOf(AddEditTaskFragment.ARG_TASK_ID to task.id)
+                )
+            }
         )
         binding.recyclerTasks.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerTasks.adapter = adapter
@@ -57,9 +64,8 @@ class TaskListFragment : Fragment() {
             viewModel.setFilter(filter)
         }
 
-        // ВРЕМЕННО: за да виждаме задачи, докато нямаме екран за добавяне
         binding.fabAdd.setOnClickListener {
-            viewModel.addTask("Тестова задача")
+            findNavController().navigate(R.id.addEditTaskFragment)
         }
     }
 

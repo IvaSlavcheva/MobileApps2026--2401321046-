@@ -51,7 +51,13 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
             repository.delete(task)
         }
     }
+        fun loadTask(id: Long, onLoaded: (Task?) -> Unit) {
+        viewModelScope.launch {
+            onLoaded(repository.getById(id))
+        }
+    }
 }
+
 
 class TaskViewModelFactory(
     private val repository: TaskRepository
