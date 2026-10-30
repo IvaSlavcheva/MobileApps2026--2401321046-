@@ -13,4 +13,7 @@
     <string name="share_list">Сподели списъка</string>
     <string name="share_header">Моите задачи:</string>
     <string name="nothing_to_share">Няма задачи за споделяне</string>
+    <string name="theme_light">Светла тема</string>
+    <string name="theme_dark">Тъмна тема</string>
+    <string name="theme_system">Като на системата</string>
 </resources>
