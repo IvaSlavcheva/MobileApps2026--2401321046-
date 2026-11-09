@@ -1,9 +1,12 @@
 package com.iva.mytasks.ui
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
+import android.hardware.Sensor
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +36,9 @@ class TaskListFragment : Fragment() {
             (requireActivity().application as TaskApplication).repository
         )
     }
+
+    private var sensorManager: SensorManager? = null
+    private val shakeDetector = ShakeDetector { clearDoneWithUndo() }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentTaskListBinding.inflate(inflater, container, false)
@@ -103,6 +109,36 @@ class TaskListFragment : Fragment() {
             }
             startActivity(Intent.createChooser(sendIntent, getString(R.string.share_list)))
         }
+    }
+
+    /** Започваме да слушаме акселерометъра само докато екранът е на преден план. */
+    override fun onResume() {
+        super.onResume()
+        val manager = requireContext().getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager = manager
+        manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)?.let { accelerometer ->
+            manager.registerListener(shakeDetector, accelerometer, SensorManager.SENSOR_DELAY_UI)
+        }
+    }
+
+    /** Спираме сензора, за да не хабим батерия и да няма течове. */
+    override fun onPause() {
+        super.onPause()
+        sensorManager?.unregisterListener(shakeDetector)
+        sensorManager = null
+    }
+
+    /** Разклащане: изтрива изпълнените задачи и показва "Отмени". */
+    private fun clearDoneWithUndo() {
+        if (_binding == null) return
+        val removed = viewModel.clearDone()
+        val message = if (removed.isEmpty()) R.string.shake_nothing_to_clear else R.string.shake_cleared
+        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
+            .setAnchorView(binding.fabAdd)
+        if (removed.isNotEmpty()) {
+            snackbar.setAction(R.string.undo) { viewModel.restoreTasks(removed) }
+        }
+        snackbar.show()
     }
 
     /** Изтрива задачата и показва лента с бутон "Отмени". */

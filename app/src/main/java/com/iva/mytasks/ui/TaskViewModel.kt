@@ -65,6 +65,22 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
         }
     }
 
+    /** Изтрива всички изпълнени задачи и връща списъка с тях (за "Отмени"). */
+    fun clearDone(): List<Task> {
+        val done = repository.allTasks.value.orEmpty().filter { it.isDone }
+        viewModelScope.launch {
+            done.forEach { repository.delete(it) }
+        }
+        return done
+    }
+
+    /** Връща няколко изтрити задачи наведнъж. */
+    fun restoreTasks(tasks: List<Task>) {
+        viewModelScope.launch {
+            tasks.forEach { repository.insert(it) }
+        }
+    }
+
     fun loadTask(id: Long, onLoaded: (Task?) -> Unit) {
         viewModelScope.launch {
             onLoaded(repository.getById(id))

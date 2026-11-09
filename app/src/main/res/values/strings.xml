@@ -19,6 +19,8 @@
     <string name="nothing_to_share">Няма задачи за споделяне</string>
     <string name="task_deleted">Задачата е изтрита</string>
     <string name="undo">Отмени</string>
+    <string name="shake_cleared">Изпълнените задачи са изчистени</string>
+    <string name="shake_nothing_to_clear">Няма изпълнени задачи за изчистване</string>
     <string name="theme_light">Светла тема</string>
     <string name="theme_dark">Тъмна тема</string>
     <string name="theme_system">Като на системата</string>
