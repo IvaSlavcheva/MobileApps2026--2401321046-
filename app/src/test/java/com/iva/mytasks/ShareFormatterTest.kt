@@ -17,8 +17,8 @@ class ShareFormatterTest {
         val result = ShareFormatter.format(tasks, "Моите задачи:")
 
         val expected = "Моите задачи:\n" +
-                "[ ] Посещение при лекар\n" +
-                "[x] Плащане на сметка"
+            "[ ] Посещение при лекар\n" +
+            "[x] Плащане на сметка"
         assertEquals(expected, result)
     }
 

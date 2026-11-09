@@ -72,12 +72,8 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
     }
 }
 
-class TaskViewModelFactory(
-    private val repository: TaskRepository
-) : ViewModelProvider.Factory {
+class TaskViewModelFactory(private val repository: TaskRepository) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return TaskViewModel(repository) as T
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = TaskViewModel(repository) as T
 }

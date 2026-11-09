@@ -26,11 +26,7 @@ class AddEditTaskFragment : Fragment() {
     // Задачата, която редактираме (null, ако добавяме нова)
     private var editingTask: Task? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentAddEditTaskBinding.inflate(inflater, container, false)
         return binding.root
     }

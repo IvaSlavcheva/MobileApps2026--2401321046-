@@ -15,12 +15,13 @@ class TaskAdapter(
     private val onClick: (Task) -> Unit
 ) : ListAdapter<Task, TaskAdapter.TaskViewHolder>(DiffCallback) {
 
-    class TaskViewHolder(val binding: ItemTaskBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    class TaskViewHolder(val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val binding = ItemTaskBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            LayoutInflater.from(parent.context),
+            parent,
+            false
         )
         return TaskViewHolder(binding)
     }
@@ -50,10 +51,8 @@ class TaskAdapter(
     }
 
     private object DiffCallback : DiffUtil.ItemCallback<Task>() {
-        override fun areItemsTheSame(oldItem: Task, newItem: Task) =
-            oldItem.id == newItem.id
+        override fun areItemsTheSame(oldItem: Task, newItem: Task) = oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Task, newItem: Task) =
-            oldItem == newItem
+        override fun areContentsTheSame(oldItem: Task, newItem: Task) = oldItem == newItem
     }
 }
