@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import com.iva.mytasks.data.Task
@@ -22,6 +23,11 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
             TaskFilter.ACTIVE -> repository.activeTasks
             TaskFilter.DONE -> repository.doneTasks
         }
+    }
+
+    /** Двойка (изпълнени, всички) - не зависи от избрания филтър. */
+    val progress: LiveData<Pair<Int, Int>> = repository.allTasks.map { list ->
+        list.count { it.isDone } to list.size
     }
 
     fun setFilter(filter: TaskFilter) {
@@ -51,13 +57,20 @@ class TaskViewModel(private val repository: TaskRepository) : ViewModel() {
             repository.delete(task)
         }
     }
-        fun loadTask(id: Long, onLoaded: (Task?) -> Unit) {
+
+    /** Връща изтрита задача (за бутона "Отмени"). */
+    fun restoreTask(task: Task) {
+        viewModelScope.launch {
+            repository.insert(task)
+        }
+    }
+
+    fun loadTask(id: Long, onLoaded: (Task?) -> Unit) {
         viewModelScope.launch {
             onLoaded(repository.getById(id))
         }
     }
 }
-
 
 class TaskViewModelFactory(
     private val repository: TaskRepository

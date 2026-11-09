@@ -29,6 +29,8 @@ class TaskAdapter(
         val task = getItem(position)
         with(holder.binding) {
             textTitle.text = task.title
+            // Изпълнените задачи изглеждат по-бледи
+            root.alpha = if (task.isDone) 0.55f else 1f
 
             // Зачертаване на заглавието, ако задачата е изпълнена
             textTitle.paintFlags = if (task.isDone) {

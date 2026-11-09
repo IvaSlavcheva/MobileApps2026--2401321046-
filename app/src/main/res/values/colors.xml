@@ -2,4 +2,30 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Светла тема -->
+    <color name="light_primary">#006A60</color>
+    <color name="light_on_primary">#FFFFFF</color>
+    <color name="light_primary_container">#74F8E5</color>
+    <color name="light_on_primary_container">#00201C</color>
+    <color name="light_secondary_container">#DCEAE6</color>
+    <color name="light_on_secondary_container">#14302B</color>
+    <color name="light_background">#EEF5F2</color>
+    <color name="light_card">#FFFFFF</color>
+    <color name="light_on_surface">#14201E</color>
+    <color name="light_on_surface_variant">#5A6B67</color>
+    <color name="light_outline">#CFE3DD</color>
+
+    <!-- Тъмна тема -->
+    <color name="dark_primary">#53DBC9</color>
+    <color name="dark_on_primary">#00201C</color>
+    <color name="dark_primary_container">#005047</color>
+    <color name="dark_on_primary_container">#74F8E5</color>
+    <color name="dark_secondary_container">#243231</color>
+    <color name="dark_on_secondary_container">#CFE3DE</color>
+    <color name="dark_background">#0F1716</color>
+    <color name="dark_card">#1B2625</color>
+    <color name="dark_on_surface">#E6EEEC</color>
+    <color name="dark_on_surface_variant">#9DB1AC</color>
+    <color name="dark_outline">#2C3D3B</color>
 </resources>
