@@ -86,7 +86,10 @@ app/src/main/java/com/iva/mytasks/
 
 ## Качество на кода
 
-Кодът се проверява с **ktlint** (`./gradlew ktlintCheck`).
+- Кодът се проверява с **ktlint** (`./gradlew ktlintCheck`) без нарушения.
+- **Memory leaks:** проверка с Android Studio Profiler (Heap Dump) след навигация между екраните, редакция и завъртане на екрана. Резултат: **0 leaks**, **0 duplicates**.
+
+![Profiler – 0 leaks](screenshots/profiler.png)
 
 ## Тестови акаунти
 
